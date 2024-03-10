@@ -11,7 +11,9 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET'] = os.getenv("SECRET")
-app.config['MONGO_URI'] = os.getenv('MONGODB_URI')
+# print(os.getenv('MONGODB_URI'), type(os.getenv('MONGODB_URI')))
+MONGO_URI = os.getenv("MONGO_URI")
+app.config['MONGO_URI'] = MONGO_URI
 CORS(app, origins="http://localhost:3000")
 client = PyMongo(app)
 db = client.db
@@ -108,16 +110,16 @@ def checkRoom(room_code):
 
 # Get room with the room code
 def getRoom(room_code):
-    return list(rooms_collection.find({"room_code": room_code}))[0]
+    return list(rooms_collection.find({"room_code": room_code}))
 
 #Get players from the room
 def getPlayerList(room_code):
-    room = getRoom(room_code)
+    room = getRoom(room_code)[0]
     return room['players']
 
 # Get questions from the room
 def getQuestions(room_code):
-    room = getRoom(room_code)
+    room = getRoom(room_code)[0]
     return room["questions"]
 
 def getQuestioByQuestionNumber(room_code, question_no):
