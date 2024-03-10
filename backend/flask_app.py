@@ -1,20 +1,25 @@
 from flask import Flask,request, jsonify
 from flask_pymongo import PyMongo
 from flask_cors import CORS, cross_origin
+
+from dotenv import load_dotenv
+import os
+
 import uuid
 
-
-MONGODB_URI = "mongodb+srv://shreynagda:shrey0308@cluster0.zxdkj5v.mongodb.net/quiz?retryWrites=true&w=majority&appName=Cluster0"
+load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET'] = "varad@123"
-app.config['MONGO_URI'] = MONGODB_URI
+app.config['SECRET'] = os.getenv("SECRET")
+app.config['MONGO_URI'] = os.getenv('MONGODB_URI')
 CORS(app, origins="http://localhost:3000")
 client = PyMongo(app)
 db = client.db
 rooms_collection = db.rooms
 
-rooms_list = []
+@app.route("/api", methods=["GET"])
+def api():
+    return jsonify("Server running on port: 5000")
 
 @app.route("/api/rooms/create", methods=["POST"])
 def create_room():
@@ -67,7 +72,6 @@ def addquestions(room_code):
         return jsonify({"status":True, "msg": "Questions added successfully!"})
     else:
         return jsonify({"status":False, "msg": f"Room code {room_code} does not exist!"})
-
 
 
 #Check if room exists in the database
