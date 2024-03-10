@@ -1,0 +1,50 @@
+.main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  gap: 1rem;
+  padding: 3rem 1rem;
+}
+
+.container input {
+  align-self: stretch;
+  padding: 1rem;
+  border: 1.5px solid transparent;
+  outline: none;
+  border-radius: 0.7rem;
+}
+
+.container input:focus {
+  border: 1.5px solid black;
+}
+
+.btn-container {
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn-container button {
+  padding: 0.7rem 1.4rem;
+  border: none;
+  outline: none;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+}
+
+.btn-container button:hover {
+  filter: brightness(100);
+}

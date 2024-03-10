@@ -1,0 +1,92 @@
+.main {
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all ease 1s;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+  color: white;
+  /* border: 1px black; */
+}
+
+.title {
+  position: absolute;
+  top: 7px;
+  color: white;
+}
+
+.container .error {
+  align-self: stretch;
+  justify-content: center;
+  height: 20px;
+  font-size: 1.2rem;
+  color: rgb(211, 74, 74);
+}
+
+.container > div {
+  display: flex;
+  align-self: stretch;
+  gap: 1rem;
+  /* background: #000; */
+}
+.container > div > input {
+  flex-grow: 1;
+}
+.container > div > button {
+  padding: 0.7rem 1.4rem;
+  border: none;
+  outline: none;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+}
+.container > div > button:hover {
+  border-color: black;
+}
+
+.max-players {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+  background-color: white;
+  padding: 0 1rem;
+  border-radius: 0.7rem;
+}
+.max-players > div {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.max-players > div button {
+  /* border: ; */
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  background-color: gainsboro;
+}
+
+.host-btn {
+  padding: 1rem 1.4rem;
+  border: none;
+  outline: none;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+}
+
+.host-btn:hover {
+  border-color: black;
+}
