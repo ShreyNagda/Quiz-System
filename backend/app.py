@@ -2,18 +2,16 @@ from flask import Flask,request, jsonify
 from flask_pymongo import PyMongo
 from flask_cors import CORS, cross_origin
 
-from dotenv import load_dotenv
-import os
-
 import uuid
 
-load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET'] = os.getenv("SECRET")
-# print(os.getenv('MONGODB_URI'), type(os.getenv('MONGODB_URI')))
-MONGO_URI = os.getenv("MONGO_URI")
+
+app.config['SECRET'] = "varad@123"
+
+MONGO_URI = "mongodb+srv://shreynagda:shrey0308@cluster0.zxdkj5v.mongodb.net/quiz?retryWrites=true&w=majority&appName=Cluster0"
 app.config['MONGO_URI'] = MONGO_URI
+
 CORS(app, origins="http://localhost:3000")
 client = PyMongo(app)
 db = client.db
@@ -77,7 +75,7 @@ def addquestions(room_code):
 
 @app.route("/api/rooms/<room_code>/getplayers", methods=["GET"])
 def get_players(room_code):
-    return getPlayerList(room_code)
+    return jsonify(getPlayerList(room_code))
 
 
 #Check answer and increment score

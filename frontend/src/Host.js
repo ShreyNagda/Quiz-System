@@ -16,14 +16,13 @@ function Host() {
 
   const base = base_url;
 
-  //   useEffect(() => {
-  //     var socketInstance = socketClient;
-  //     socketInstance.on("connect", () => {
-  //       console.log("connected");
-  //     });
-  //     socketClient.connect();
-  //     console.log(socketClient.connected);
-  //   }, []);
+  useEffect(() => {
+    var socketInstance = socketClient;
+    socketInstance.on("message", (data) => {
+      console.log(data);
+    });
+    socketInstance.send("Hello from host", "ABAB");
+  }, []);
 
   function generateCode() {
     var charCode = "";

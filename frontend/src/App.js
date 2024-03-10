@@ -8,6 +8,7 @@ function App() {
     window.addEventListener("popstate", (e) => {
       window.history.go(1);
     });
+    socketClient.connect();
   }, []);
   const navigate = useNavigate();
   return (
@@ -18,14 +19,7 @@ function App() {
         <input type="text" placeholder="Enter nickname"></input>
         <input type="text" placeholder="Enter room code"></input>
         <div className="btn-container">
-          <button
-            onClick={() => {
-              socketClient.connect();
-              console.log(socketClient.connected);
-            }}
-          >
-            Join
-          </button>
+          <button onClick={() => {}}>Join</button>
           <button onClick={() => navigate("/host")}>Host</button>
         </div>
       </div>

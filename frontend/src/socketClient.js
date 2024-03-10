@@ -5,4 +5,8 @@ const socketClient = io("http://127.0.0.1:5000/", {
   //   reconnection: true,
 });
 
+socketClient.on("connect", () => {
+  console.log("Connected");
+});
+
 export default socketClient;
