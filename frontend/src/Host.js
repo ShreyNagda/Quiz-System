@@ -1,10 +1,10 @@
 import "./Host.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { base_url } from "./global";
+import { base_url, dev_base_url } from "./global";
 import socketClient from "./socketClient";
 
 function Host() {
@@ -14,15 +14,7 @@ function Host() {
   const [roomName, setRoomName] = useState("");
   const [err, setErr] = useState(null);
 
-  const base = base_url;
-
-  useEffect(() => {
-    var socketInstance = socketClient;
-    socketInstance.on("message", (data) => {
-      console.log(data);
-    });
-    socketInstance.send("Hello from host", "ABAB");
-  }, []);
+  // useEffect(() => {}, []);
 
   function generateCode() {
     var charCode = "";
@@ -37,14 +29,16 @@ function Host() {
     else if (roomCode === "") setErr("Enter Room Code or Click Generate");
     else {
       axios
-        .post(base + "/rooms/create", {
+        .post(dev_base_url + "/rooms/create", {
           room_name: roomName,
           room_code: roomCode,
           max_players: maxPlayers,
         })
         .then((res) => {
           if (res["data"]["status"]) {
-            console.log("True");
+            socketClient.connect();
+            socketClient.emit("join", { name: roomName, room: roomCode });
+            navigate("/quiz", { state: { room_code: roomCode, isHost: true } });
           }
         });
     }
